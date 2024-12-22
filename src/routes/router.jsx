@@ -5,6 +5,7 @@ import AllArtifacts from "../pages/AllArtifacts";
 import AddArtifacts from "../pages/AddArtifacts";
 import Error from "../pages/Error";
 import SignIn from "../pages/SignIn";
+import Register from "../pages/Register";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "/signIn",
         element: <SignIn></SignIn>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
       },
     ],
   },

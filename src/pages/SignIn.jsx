@@ -1,17 +1,17 @@
 import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FaGoogle } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet";
-// import useAuth from "../hooks/useAuth";
+import useAuth from "../hooks/useAuth";
 // import AuthContext from "../Auth/AuthContext";
 
 const SignIn = () => {
-  // const { googleSignIn, userSignIn, setUser, passwordReset } = useAuth;
+  const { googleSignIn, userSignIn, setUser, user, passwordReset } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  // console.log(location);
+  console.log(user);
 
   const handleGoogleSignIn = () => {
     googleSignIn()
@@ -93,7 +93,7 @@ const SignIn = () => {
         </form>
         <div onClick={handleGoogleSignIn} className="mx-auto my-5">
           <button className="flex justify-arround items-center gap-4 bg-gray-100 btn">
-            <FaGoogle />
+            <FcGoogle />
             <span className="font-semibold">Login with Google</span>
           </button>
         </div>

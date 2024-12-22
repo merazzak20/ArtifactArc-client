@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 // import AuthContext from "../Auth/AuthContext";
-// import useAuth from "../hooks/useAuth";
+import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
-  //   const { signOutUser } = useContext(AuthContext);
-  //   const { user } = useContext(AuthContext);
+  const [isHovered, setIsHovered] = useState(false);
+  const { user, signOutUser } = useAuth();
 
   const handleSignOut = () => {
     signOutUser()
@@ -67,16 +67,48 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
-      {/* <div className="navbar-end flex gap-4">
+      <div className="navbar-end flex gap-4">
         <div className="flex gap-2 items-center">
           {user ? (
             <>
-              <button
+              {/* <button
                 onClick={handleSignOut}
                 className="btn btn-neutral rounded-none"
               >
                 Sign out
-              </button>
+              </button> */}
+              <div className="dropdown dropdown-end">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar "
+                >
+                  <div
+                    className="w-10 border-2 rounded-full"
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                  >
+                    <img alt="User Profile" src={user?.photoURL} />
+                  </div>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                >
+                  <li>
+                    <a className="justify-between">
+                      Profile
+                      <span className="badge">New</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a>My Artifacts</a>
+                  </li>
+                  <li>
+                    <a>Liked Artifacts</a>
+                  </li>
+                </ul>
+              </div>
             </>
           ) : (
             <>
@@ -90,36 +122,24 @@ const Navbar = () => {
               </Link>
             </>
           )}
-        </div>
-        <div className="dropdown dropdown-end">
+
           <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost btn-circle avatar"
+            className={`absolute mt-32 bg-opacity-50 text-center bg-slate-200 p-3 rounded-lg right-4 items-end mr-28 ${
+              isHovered ? "block" : "hidden"
+            }`}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
           >
-            <div className="w-10 rounded-full">
-              <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
-            </div>
+            <button
+              onClick={handleSignOut}
+              className="btn btn-neutral rounded-none "
+            >
+              Logout
+            </button>
+            <p className="text-red mt-2 font-bold z-20">{user?.displayName}</p>
           </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-          >
-            <li>
-              <a className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </a>
-            </li>
-            <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a>Logout</a>
-            </li>
-          </ul>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };
