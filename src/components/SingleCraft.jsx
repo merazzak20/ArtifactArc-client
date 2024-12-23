@@ -1,12 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const SingleCraft = ({ craft }) => {
-  const { artifactName, artifactImage, historicalContext, likeCount } = craft;
-  //     Artifact Image
-  // Artifact Name
-  // Short description
-  // Like Count
-  // View Details button
+  const { _id, artifactName, artifactImage, historicalContext, likeCount } =
+    craft;
+
+  const navigate = useNavigate();
+
+  const handleDetails = (_id) => {
+    console.log(_id);
+    navigate(`/articraft/${_id}`);
+  };
 
   return (
     <div className="card bg-base-100  shadow-xl">
@@ -27,7 +31,7 @@ const SingleCraft = ({ craft }) => {
         <div className="card-actions justify-end mt-3">
           <p className="font-semibold">Total Like: {likeCount}</p>
           <button
-            // onClick={() => handleDetails(_id)}
+            onClick={() => handleDetails(_id)}
             className="btn btn-sm btn-outline btn-neutral rounded-none "
           >
             See Details

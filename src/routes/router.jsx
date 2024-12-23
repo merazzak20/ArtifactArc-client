@@ -6,6 +6,7 @@ import AddArtifacts from "../pages/AddArtifacts";
 import Error from "../pages/Error";
 import SignIn from "../pages/SignIn";
 import Register from "../pages/Register";
+import ArtiCraftsDetails from "../pages/ArtiCraftsDetails";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/articraft/:id",
+        element: <ArtiCraftsDetails></ArtiCraftsDetails>,
       },
     ],
   },
