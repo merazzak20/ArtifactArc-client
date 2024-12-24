@@ -23,7 +23,7 @@ const AddArtifacts = () => {
         console.log(res.data);
         // form.reset();
         toast.success("Data Added Successfully!!!");
-        navigate("/updateArtifact");
+        navigate("/myArtifacts");
       });
   };
   const handleChange = () => {};
@@ -75,6 +75,7 @@ const AddArtifacts = () => {
               onChange={handleChange}
               className="select select-bordered rounded-none w-full"
             >
+              <option disabled>Select Type</option>
               <option>Tools</option>
               <option>Weapons</option>
               <option>Documents</option>

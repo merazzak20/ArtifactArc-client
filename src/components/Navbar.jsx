@@ -74,9 +74,9 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className=" text-xl">
+        <Link to="/" className=" text-xl">
           <h3 className="text-3xl font-bold">ArtifactArc</h3>
-        </a>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 space-x-3">{links}</ul>
@@ -85,12 +85,6 @@ const Navbar = () => {
         <div className="flex gap-2 items-center">
           {user ? (
             <>
-              {/* <button
-                onClick={handleSignOut}
-                className="btn btn-neutral rounded-none"
-              >
-                Sign out
-              </button> */}
               <div className="dropdown dropdown-end">
                 <div
                   tabIndex={0}
