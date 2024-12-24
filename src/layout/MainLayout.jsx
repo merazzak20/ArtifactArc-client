@@ -11,7 +11,7 @@ const MainLayout = () => {
       <div className="max-w-7xl mx-auto">
         <Navbar></Navbar>
       </div>
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto min-h-[calc(100vh-288px)]">
         <Outlet></Outlet>
       </div>
 

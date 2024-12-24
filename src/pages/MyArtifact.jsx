@@ -14,10 +14,10 @@ const MyArtifact = () => {
     const { data } = await axios.get(
       `${import.meta.env.VITE_API_URL}/artifact`
     );
-    console.log(data);
+    // console.log(data);
     const mydData = data.filter((my) => my.artifactAdderEmail === user?.email);
     setCraft(mydData);
-    console.log(craft);
+    // console.log(craft);
   };
   return (
     <div>
@@ -28,7 +28,7 @@ const MyArtifact = () => {
       </Helmet>
       <div>
         <h2 className="text-center text-3xl font-bold my-5">
-          My Artifacts :{craft.length}
+          My Artifacts : {craft.length}
         </h2>
       </div>
       <div>

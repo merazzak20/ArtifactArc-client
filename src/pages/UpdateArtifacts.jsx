@@ -1,28 +1,58 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
+import { useNavigate, useParams } from "react-router-dom";
 
 const UpdateArtifacts = () => {
+  const { id } = useParams();
   const { user } = useAuth();
+  const navigate = useNavigate();
+  const [craft, setCraft] = useState({});
+  console.log(id);
+  useEffect(() => {
+    specificArticraft();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+
+  const specificArticraft = async () => {
+    const { data } = await axios.get(
+      `${import.meta.env.VITE_API_URL}/artifact/${id}`
+    );
+    setCraft(data);
+  };
+  console.log(craft);
+  const {
+    _id,
+    artifactName,
+    artifactImage,
+    historicalContext,
+    artifactType,
+    createdAt,
+    discoveredAt,
+    discoveredBy,
+    presentLocation,
+    artifactAdderName,
+    artifactAdderEmail,
+  } = craft;
   const handleChange = () => {};
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(2);
+    // console.log(2);
     const formData = new FormData(e.target);
-    const initialData = Object.fromEntries(formData.entries());
+    const updatedData = Object.fromEntries(formData.entries());
 
-    const { ...newartiFact } = initialData;
-    console.log(newartiFact);
+    const { ...updatedFact } = updatedData;
+    console.log(updatedFact);
 
     axios
-      .put(`${import.meta.env.VITE_API_URL}/artifact`, newartiFact)
+      .put(`${import.meta.env.VITE_API_URL}/artifact/${id}`, updatedFact)
       .then((res) => {
         console.log(res.data);
         // form.reset();
-        toast.success("Data Added Successfully!!!");
-        // navigate("/updateArtifact");
+        toast.success("Data updated Successfully!!!");
+        navigate("/myArtifacts");
       });
   };
   return (
@@ -32,7 +62,9 @@ const UpdateArtifacts = () => {
         <meta name="description" content="Add a new artifact to ArtifactArc." />
       </Helmet>
       <div className="max-w-4xl mx-auto mt-10 p-5 bg-white shadow rounded-lg">
-        <h2 className="text-3xl font-bold text-center mb-5">Update Artifact</h2>
+        <h2 className="text-3xl font-bold text-center mb-5">
+          Update {artifactName}
+        </h2>
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Artifact Name */}
           <div className="form-control">
@@ -42,6 +74,7 @@ const UpdateArtifacts = () => {
               name="artifactName"
               // value={formData.artifactName}
               onChange={handleChange}
+              defaultValue={artifactName}
               placeholder="Enter the Artifact Name"
               className="input input-bordered rounded-none w-full"
               required
@@ -58,6 +91,7 @@ const UpdateArtifacts = () => {
               name="artifactImage"
               // value={formData.artifactImage}
               onChange={handleChange}
+              defaultValue={artifactImage}
               placeholder="Enter the Artifact Image URL"
               className="input input-bordered rounded-none w-full"
               required
@@ -71,6 +105,7 @@ const UpdateArtifacts = () => {
               name="artifactType"
               // value={formData.artifactType}
               onChange={handleChange}
+              defaultValue={artifactType}
               className="select select-bordered rounded-none w-full"
             >
               <option>Tools</option>
@@ -89,6 +124,7 @@ const UpdateArtifacts = () => {
               name="historicalContext"
               // value={formData.historicalContext}
               onChange={handleChange}
+              defaultValue={historicalContext}
               placeholder="Enter the Artifact Context"
               className="textarea textarea-bordered rounded-none w-full"
               rows="4"
@@ -106,6 +142,7 @@ const UpdateArtifacts = () => {
                 name="createdAt"
                 // value={formData.createdAt}
                 onChange={handleChange}
+                defaultValue={createdAt}
                 className="input input-bordered rounded-none w-full"
                 placeholder="e.g., 100 BC"
                 required
@@ -120,6 +157,7 @@ const UpdateArtifacts = () => {
                 name="discoveredAt"
                 // value={formData.discoveredAt}
                 onChange={handleChange}
+                defaultValue={discoveredAt}
                 className="input input-bordered rounded-none w-full"
                 placeholder="e.g., 1799"
                 required
@@ -137,6 +175,7 @@ const UpdateArtifacts = () => {
                 name="discoveredBy"
                 // value={formData.discoveredBy}
                 onChange={handleChange}
+                defaultValue={discoveredBy}
                 placeholder="Who discover this?"
                 className="input input-bordered rounded-none w-full"
                 required
@@ -151,6 +190,7 @@ const UpdateArtifacts = () => {
                 name="presentLocation"
                 // value={formData.presentLocation}
                 onChange={handleChange}
+                defaultValue={presentLocation}
                 placeholder="Present Location"
                 className="input input-bordered rounded-none w-full"
                 required
