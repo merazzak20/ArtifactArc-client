@@ -16,7 +16,7 @@ const MainLayout = () => {
       </div>
 
       <div className="bg-base-200">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto mt-11">
           <Footer></Footer>
         </div>
       </div>

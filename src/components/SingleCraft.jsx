@@ -29,7 +29,9 @@ const SingleCraft = ({ craft }) => {
         </div>
 
         <div className="card-actions justify-end mt-3">
-          <p className="font-semibold">Total Like: {likeCount}</p>
+          <p className="font-semibold">
+            Total Like: {likeCount ? likeCount : 0}
+          </p>
           <button
             onClick={() => handleDetails(_id)}
             className="btn btn-sm btn-outline btn-neutral rounded-none "
