@@ -76,6 +76,7 @@ const AddArtifacts = () => {
               <option>Weapons</option>
               <option>Documents</option>
               <option>Writings</option>
+              <option>Sculpture</option>
               <option>Other</option>
             </select>
           </div>

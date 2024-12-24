@@ -28,8 +28,22 @@ const Navbar = () => {
       <li>
         <NavLink to="/addArtifacts">Add Artifacts</NavLink>
       </li>
+    </>
+  );
+
+  const dropDownLinks = (
+    <>
       <li>
-        <NavLink to="/myPostedJobs">My Posted Jobs</NavLink>
+        <Link to="/" className="justify-between">
+          Profile
+          <span className="badge">New</span>
+        </Link>
+      </li>
+      <li>
+        <Link to="/myArtifacts">My Artifacts</Link>
+      </li>
+      <li>
+        <Link to="/likedArtifacts">Liked Artifacts</Link>
       </li>
     </>
   );
@@ -95,18 +109,7 @@ const Navbar = () => {
                   tabIndex={0}
                   className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
                 >
-                  <li>
-                    <a className="justify-between">
-                      Profile
-                      <span className="badge">New</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a>My Artifacts</a>
-                  </li>
-                  <li>
-                    <a>Liked Artifacts</a>
-                  </li>
+                  {dropDownLinks}
                 </ul>
               </div>
             </>
