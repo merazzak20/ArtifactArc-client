@@ -107,7 +107,7 @@ const Navbar = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                  className="menu menu-sm dropdown-content bg-base-100 rounded-box  mt-3 w-52 p-2 z-20 shadow "
                 >
                   {dropDownLinks}
                 </ul>
@@ -127,7 +127,7 @@ const Navbar = () => {
           )}
 
           <div
-            className={`absolute mt-32 bg-opacity-50 text-center bg-slate-200 p-3 rounded-lg right-4 items-end mr-28 ${
+            className={`absolute mt-32 bg-opacity-50 text-center bg-slate-200 p-3 rounded-lg right-4 items-end mr-28 z-20 ${
               isHovered ? "block" : "hidden"
             }`}
             onMouseEnter={() => setIsHovered(true)}
