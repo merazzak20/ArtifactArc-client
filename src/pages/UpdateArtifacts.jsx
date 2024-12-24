@@ -1,13 +1,12 @@
+import axios from "axios";
 import React from "react";
 import { Helmet } from "react-helmet";
 import useAuth from "../hooks/useAuth";
-import axios from "axios";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
-const AddArtifacts = () => {
+const UpdateArtifacts = () => {
   const { user } = useAuth();
-  const navigate = useNavigate();
+  const handleChange = () => {};
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(2);
@@ -18,15 +17,14 @@ const AddArtifacts = () => {
     console.log(newartiFact);
 
     axios
-      .post(`${import.meta.env.VITE_API_URL}/artifact`, newartiFact)
+      .put(`${import.meta.env.VITE_API_URL}/artifact`, newartiFact)
       .then((res) => {
         console.log(res.data);
         // form.reset();
         toast.success("Data Added Successfully!!!");
-        navigate("/updateArtifact");
+        // navigate("/updateArtifact");
       });
   };
-  const handleChange = () => {};
   return (
     <div>
       <Helmet>
@@ -34,7 +32,7 @@ const AddArtifacts = () => {
         <meta name="description" content="Add a new artifact to ArtifactArc." />
       </Helmet>
       <div className="max-w-4xl mx-auto mt-10 p-5 bg-white shadow rounded-lg">
-        <h2 className="text-3xl font-bold text-center mb-5">Add Artifact</h2>
+        <h2 className="text-3xl font-bold text-center mb-5">Update Artifact</h2>
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Artifact Name */}
           <div className="form-control">
@@ -203,4 +201,4 @@ const AddArtifacts = () => {
   );
 };
 
-export default AddArtifacts;
+export default UpdateArtifacts;

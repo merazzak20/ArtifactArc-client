@@ -1,11 +1,12 @@
 import React from "react";
-import { MdDelete } from "react-icons/md";
-import { FaEdit } from "react-icons/fa";
+
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 
 const MySingleFact = ({ cr }) => {
+  const loaderCr = cr;
+  console.log(loaderCr);
   const {
     _id,
     artifactName,
@@ -104,7 +105,7 @@ const MySingleFact = ({ cr }) => {
                   </svg>
                 </button>
                 <Link
-                  //   to={`/update/${job._id}`}
+                  to={`/UpdateArtifact/${_id}`}
                   className="text-gray-500 transition-colors duration-200   hover:text-yellow-500 focus:outline-none"
                 >
                   <svg

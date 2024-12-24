@@ -8,7 +8,7 @@ const SingleCraft = ({ craft }) => {
   const navigate = useNavigate();
 
   const handleDetails = (_id) => {
-    console.log(_id);
+    // console.log(_id);
     navigate(`/articraft/${_id}`);
   };
 

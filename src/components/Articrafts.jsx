@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Articrafts = () => {
   const [artiCrafts, setArticrafts] = useState([]);
-  console.log(artiCrafts);
+  // console.log(artiCrafts);
   useEffect(() => {
     fetchAllCrafts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
