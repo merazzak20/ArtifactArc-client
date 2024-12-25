@@ -4,11 +4,14 @@ import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
 import { AiFillLike } from "react-icons/ai";
 import { FaRegHeart } from "react-icons/fa";
+import useAuth from "../hooks/useAuth";
 
 const ArtiCraftsDetails = () => {
   const { id } = useParams();
+  const { user } = useAuth();
   const [craft, setCraft] = useState({});
   const [likeCount, setLikeCount] = useState(0);
+  const [btnStatus, setBtnStatus] = useState(false);
 
   const {
     artifactName,
@@ -39,10 +42,12 @@ const ArtiCraftsDetails = () => {
   const handleLike = async () => {
     const updatedLikeCount = likeCount + 1;
     setLikeCount(updatedLikeCount); // Update the local state
+    setBtnStatus(true);
 
     // Optionally, make an API call to update the like count in the database
-    await axios.put(`${import.meta.env.VITE_API_URL}/articraft/${id}/like`, {
+    await axios.put(`${import.meta.env.VITE_API_URL}/artifact/${id}`, {
       likeCount: updatedLikeCount,
+      likeEmail: user.email,
     });
   };
   // console.log(likeCount);
@@ -109,8 +114,11 @@ const ArtiCraftsDetails = () => {
           </div>
           <div className="mt-6">
             <button
-              className="btn btn-outline btn-neutral w-full rounded-none"
+              className={`btn btn-outline btn-neutral w-full rounded-none ${
+                btnStatus && "disabled"
+              }`}
               onClick={handleLike}
+              disabled={btnStatus}
             >
               <AiFillLike className="text-gray-700 text-2xl mr-2" />
             </button>

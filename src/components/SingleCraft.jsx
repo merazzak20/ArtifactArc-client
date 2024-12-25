@@ -24,7 +24,7 @@ const SingleCraft = ({ craft }) => {
         {/* Row 1 */}
         <div className="">
           <p className="font-medium text-gray-600">
-            {historicalContext.substring(0, 70)}...
+            {historicalContext?.substring(0, 70)}...
           </p>
         </div>
 
