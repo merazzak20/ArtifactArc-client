@@ -10,17 +10,22 @@ const AddArtifacts = () => {
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(2);
+    // console.log(2);
     const formData = new FormData(e.target);
+    formData.set("likeCount", 0);
     const initialData = Object.fromEntries(formData.entries());
+    const newartiFact = {
+      ...initialData,
+      likeCount: parseInt(initialData.likeCount, 10), // Convert to an integer
+    };
 
-    const { ...newartiFact } = initialData;
+    // const { ...newartiFact } = initialData;
     console.log(newartiFact);
 
     axios
       .post(`${import.meta.env.VITE_API_URL}/artifact`, newartiFact)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         // form.reset();
         toast.success("Data Added Successfully!!!");
         navigate("/myArtifacts");
@@ -156,7 +161,7 @@ const AddArtifacts = () => {
                 onChange={handleChange}
                 placeholder="Present Location"
                 className="input input-bordered rounded-none w-full"
-                required
+                // required
               />
             </div>
           </div>

@@ -35,21 +35,17 @@ const ArtiCraftsDetails = () => {
     setCraft(data);
     setLikeCount(data.likeCount || 0); // Set initial like count from the API response
   };
-  const handleLike = () => {};
-  //   const handleLike = async () => {
-  //     const updatedLikeCount = likeCount + 1;
-  //     setLikeCount(updatedLikeCount); // Update the local state
 
-  //     // Optionally, make an API call to update the like count in the database
-  //     await axios.put(`${import.meta.env.VITE_API_URL}/articraft/${id}/like`, {
-  //       likeCount: updatedLikeCount,
-  //     });
-  //   };
+  const handleLike = async () => {
+    const updatedLikeCount = likeCount + 1;
+    setLikeCount(updatedLikeCount); // Update the local state
 
-  //   const handleLike = (likeCount) => {
-  //     const [like, setLike] = useState(likeCount);
-  //     setLike((prevLike) => prevLike + 1);
-  //   };
+    // Optionally, make an API call to update the like count in the database
+    await axios.put(`${import.meta.env.VITE_API_URL}/articraft/${id}/like`, {
+      likeCount: updatedLikeCount,
+    });
+  };
+  // console.log(likeCount);
 
   return (
     <div>
@@ -95,7 +91,8 @@ const ArtiCraftsDetails = () => {
               <strong>Discovered By:</strong> {discoveredBy}
             </p>
             <p className="  text-gray-600">
-              <strong>Present Location:</strong> {presentLocation}
+              <strong>Present Location:</strong>{" "}
+              {presentLocation ? presentLocation : "N/A"}
             </p>
             <p className="  text-gray-600">
               <strong>Artifact Adder Name:</strong> {artifactAdderName}
@@ -113,7 +110,7 @@ const ArtiCraftsDetails = () => {
           <div className="mt-6">
             <button
               className="btn btn-outline btn-neutral w-full rounded-none"
-              onClick={handleLike()}
+              onClick={handleLike}
             >
               <AiFillLike className="text-gray-700 text-2xl mr-2" />
             </button>

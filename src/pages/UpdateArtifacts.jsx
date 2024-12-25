@@ -10,11 +10,18 @@ const UpdateArtifacts = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [craft, setCraft] = useState({});
+  const [type, setType] = useState("");
   console.log(id);
   useEffect(() => {
     specificArticraft();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
+
+  useEffect(() => {
+    if (craft?.artifactType) {
+      setType(craft.artifactType); // Initialize the dropdown with fetched data
+    }
+  }, [craft]);
 
   const specificArticraft = async () => {
     const { data } = await axios.get(
@@ -36,11 +43,15 @@ const UpdateArtifacts = () => {
     artifactAdderName,
     artifactAdderEmail,
   } = craft;
-  const handleChange = () => {};
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setType(value);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log(2);
     const formData = new FormData(e.target);
+    formData.set("artifactType", type);
     const updatedData = Object.fromEntries(formData.entries());
 
     const { ...updatedFact } = updatedData;
@@ -73,7 +84,7 @@ const UpdateArtifacts = () => {
               type="text"
               name="artifactName"
               // value={formData.artifactName}
-              onChange={handleChange}
+              // onChange={handleChange}
               defaultValue={artifactName}
               placeholder="Enter the Artifact Name"
               className="input input-bordered rounded-none w-full"
@@ -90,7 +101,7 @@ const UpdateArtifacts = () => {
               type="url"
               name="artifactImage"
               // value={formData.artifactImage}
-              onChange={handleChange}
+              // onChange={handleChange}
               defaultValue={artifactImage}
               placeholder="Enter the Artifact Image URL"
               className="input input-bordered rounded-none w-full"
@@ -105,15 +116,16 @@ const UpdateArtifacts = () => {
               name="artifactType"
               // value={formData.artifactType}
               onChange={handleChange}
-              defaultValue={artifactType}
+              value={type}
               className="select select-bordered rounded-none w-full"
             >
-              <option>Tools</option>
-              <option>Weapons</option>
-              <option>Documents</option>
-              <option>Writings</option>
-              <option>Sculpture</option>
-              <option>Other</option>
+              <option value="">Select an option</option>
+              <option value="Tools">Tools</option>
+              <option value="Weapons">Weapons</option>
+              <option value="Documents">Documents</option>
+              <option value="Writings">Writings</option>
+              <option value="Sculpture">Sculpture</option>
+              <option value="Other">Other</option>
             </select>
           </div>
 
@@ -123,7 +135,7 @@ const UpdateArtifacts = () => {
             <textarea
               name="historicalContext"
               // value={formData.historicalContext}
-              onChange={handleChange}
+              // onChange={handleChange}
               defaultValue={historicalContext}
               placeholder="Enter the Artifact Context"
               className="textarea textarea-bordered rounded-none w-full"
@@ -232,7 +244,7 @@ const UpdateArtifacts = () => {
               type="submit"
               className="btn btn-neutral rounded-none w-full"
             >
-              Add Artifact
+              Update Artifact
             </button>
           </div>
         </form>
