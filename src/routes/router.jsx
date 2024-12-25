@@ -10,6 +10,7 @@ import ArtiCraftsDetails from "../pages/ArtiCraftsDetails";
 import MyArtifact from "../pages/MyArtifact";
 import LikedArtifact from "../pages/LikedArtifact";
 import UpdateArtifacts from "../pages/UpdateArtifacts";
+import PrivateRouter from "./PrivateRouter";
 
 const router = createBrowserRouter([
   {
@@ -27,7 +28,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/addArtifacts",
-        element: <AddArtifacts></AddArtifacts>,
+        element: (
+          <PrivateRouter>
+            <AddArtifacts></AddArtifacts>
+          </PrivateRouter>
+        ),
       },
       {
         path: "/signIn",
@@ -39,15 +44,27 @@ const router = createBrowserRouter([
       },
       {
         path: "/articraft/:id",
-        element: <ArtiCraftsDetails></ArtiCraftsDetails>,
+        element: (
+          <PrivateRouter>
+            <ArtiCraftsDetails></ArtiCraftsDetails>
+          </PrivateRouter>
+        ),
       },
       {
         path: "/myArtifacts",
-        element: <MyArtifact></MyArtifact>,
+        element: (
+          <PrivateRouter>
+            <MyArtifact></MyArtifact>
+          </PrivateRouter>
+        ),
       },
       {
         path: "/likedArtifacts",
-        element: <LikedArtifact></LikedArtifact>,
+        element: (
+          <PrivateRouter>
+            <LikedArtifact></LikedArtifact>
+          </PrivateRouter>
+        ),
       },
       {
         path: "/updateArtifact/:id",

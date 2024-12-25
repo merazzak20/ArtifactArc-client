@@ -16,7 +16,7 @@ const SignIn = () => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((res) => {
-        toast.success("Welcome" + " " + res.user.email);
+        toast.success("Welcome" + " " + res.user.displayName);
         navigate(location?.state ? location.state : "/");
       })
       .catch((err) => {

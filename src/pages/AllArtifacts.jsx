@@ -5,6 +5,7 @@ import SingleCraft from "../components/SingleCraft";
 const AllArticrafts = () => {
   const [artiCrafts, setArticrafts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [filteredCrafts, setFilteredCrafts] = useState([]);
   // console.log(artiCrafts);
   useEffect(() => {
     fetchAllCrafts();
@@ -12,19 +13,27 @@ const AllArticrafts = () => {
   }, []);
   const fetchAllCrafts = async () => {
     const { data } = await axios.get(
-      `${import.meta.env.VITE_API_URL}/artifact`
+      `${import.meta.env.VITE_API_URL}/artifact`,
+      { withCredentials: true }
     );
     setArticrafts(data);
-
-    // Search
-    // const handleSearch = (e) => {
-    //   setSearchQuery(e.target.value);
-    // };
-
-    // const filteredCrafts = artiCrafts.filter((craft) =>
-    //   craft.artifactName.toLowerCase().includes(searchQuery.toLowerCase())
-    // );
+    setFilteredCrafts(data);
   };
+
+  // Handle search input change
+  const handleSearchInputChange = (e) => {
+    setSearchQuery(e.target.value.toLowerCase()); // Update search query
+  };
+
+  // Handle search button click
+  const handleSearch = () => {
+    // Filter artifacts based on the search query
+    const results = artiCrafts.filter((craft) =>
+      craft.artifactName.toLowerCase().includes(searchQuery)
+    );
+    setFilteredCrafts(results); // Update filtered results
+  };
+
   return (
     <div>
       <div className="info text-center my-8">
@@ -33,23 +42,23 @@ const AllArticrafts = () => {
         </h1>
       </div>
       {/* Search input */}
-      {/* <div className="my-4 text-center">
+      <div className="my-4 text-center">
         <input
           type="text"
           placeholder="Search by artifact name..."
           value={searchQuery}
-          onChange={handleSearch}
-          className="input input-bordered w-full max-w-xs"
+          onChange={handleSearchInputChange}
+          className="input input-bordered w-full max-w-xs rounded-none"
         />
         <button
           onClick={handleSearch}
-          className="ml-4 px-6 py-2 btn btn-primary rounded-none"
+          className="ml-4 px-6 py-2 btn btn-neutral rounded-none"
         >
           Search
         </button>
-      </div> */}
+      </div>
       <div className="grid md:grid-cols-3 gap-5 my-8">
-        {artiCrafts.map((craft) => (
+        {filteredCrafts.map((craft) => (
           <SingleCraft key={craft._id} craft={craft}></SingleCraft>
         ))}
       </div>

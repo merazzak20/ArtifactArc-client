@@ -14,7 +14,13 @@ const MyArtifact = () => {
   }, [user?.email]);
   const AllArticrafts = async () => {
     const { data } = await axios.get(
-      `${import.meta.env.VITE_API_URL}/artifact`
+      `${import.meta.env.VITE_API_URL}/artifact`,
+      {
+        withCredentials: true,
+        // headers: {
+        //   artifactadderemail: user?.email, // Ensure user.email is defined
+        // },
+      }
     );
     // console.log(data);
     const mydData = data.filter((my) => my.artifactAdderEmail === user?.email);
