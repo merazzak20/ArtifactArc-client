@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import SingleCraft from "../components/SingleCraft";
+import { Helmet } from "react-helmet";
+import { HelmetProvider } from "react-helmet-async";
 
 const AllArticrafts = () => {
   const [artiCrafts, setArticrafts] = useState([]);
@@ -13,7 +15,7 @@ const AllArticrafts = () => {
   }, []);
   const fetchAllCrafts = async () => {
     const { data } = await axios.get(
-      `${import.meta.env.VITE_API_URL}/artifact`,
+      `${import.meta.env.VITE_API_URL}/allArtifact`,
       { withCredentials: true }
     );
     setArticrafts(data);
@@ -36,6 +38,14 @@ const AllArticrafts = () => {
 
   return (
     <div>
+      <HelmetProvider>
+        <Helmet>
+          <title>All Artifacts - ArtifactArc</title>
+          <meta name="description" content="Learn more about our company." />
+          <meta name="keywords" content="about, company, information" />
+        </Helmet>
+      </HelmetProvider>
+
       <div className="info text-center my-8">
         <h1 className="text-4xl font-bold  text-[#373737]">
           All Articrafts: {artiCrafts.length}

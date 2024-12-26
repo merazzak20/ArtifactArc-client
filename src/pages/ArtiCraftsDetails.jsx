@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
 import { AiFillLike } from "react-icons/ai";
+import { AiFillDislike } from "react-icons/ai";
 import { FaRegHeart } from "react-icons/fa";
 import useAuth from "../hooks/useAuth";
 
@@ -12,6 +13,7 @@ const ArtiCraftsDetails = () => {
   const [craft, setCraft] = useState({});
   const [likeCount, setLikeCount] = useState(0);
   const [btnStatus, setBtnStatus] = useState(false);
+  console.log(btnStatus);
 
   const {
     artifactName,
@@ -37,17 +39,20 @@ const ArtiCraftsDetails = () => {
     );
     setCraft(data);
     setLikeCount(data.likeCount || 0); // Set initial like count from the API response
+    // setBtnStatus(data.likeEmail?.includes(user.email) || false); // Check if the user has already liked
   };
 
   const handleLike = async () => {
-    const updatedLikeCount = likeCount + 1;
-    setLikeCount(updatedLikeCount); // Update the local state
-    setBtnStatus(true);
+    const newLikeStatus = !btnStatus;
+    const updatedLikeCount = newLikeStatus ? likeCount + 1 : likeCount - 1;
+    setLikeCount(updatedLikeCount);
+    setBtnStatus(newLikeStatus);
 
     // Optionally, make an API call to update the like count in the database
     await axios.put(`${import.meta.env.VITE_API_URL}/artifact/${id}`, {
       likeCount: updatedLikeCount,
       likeEmail: user.email,
+      isLiked: newLikeStatus,
     });
   };
   // console.log(likeCount);
@@ -114,13 +119,19 @@ const ArtiCraftsDetails = () => {
           </div>
           <div className="mt-6">
             <button
-              className={`btn btn-outline btn-neutral w-full rounded-none ${
-                btnStatus && "disabled"
-              }`}
+              className="btn btn-outline btn-neutral w-full rounded-none"
               onClick={handleLike}
-              disabled={btnStatus}
             >
-              <AiFillLike className="text-gray-700 text-2xl mr-2" />
+              {btnStatus ? (
+                <>
+                  Dislike{" "}
+                  <AiFillDislike className="text-gray-700 text-2xl ml-2" />
+                </>
+              ) : (
+                <>
+                  Like <AiFillLike className="text-gray-700 text-2xl ml-2" />
+                </>
+              )}
             </button>
           </div>
         </div>

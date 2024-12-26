@@ -5,9 +5,11 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import MySingleFact from "../components/MySingleFact";
 import { toast } from "react-toastify";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const MyArtifact = () => {
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const [craft, setCraft] = useState([]);
   useEffect(() => {
     AllArticrafts();
@@ -17,11 +19,11 @@ const MyArtifact = () => {
       `${import.meta.env.VITE_API_URL}/artifact`,
       {
         withCredentials: true,
-        // headers: {
-        //   artifactadderemail: user?.email, // Ensure user.email is defined
-        // },
       }
     );
+
+    // const { data } = await axiosSecure.get(`/artifact`);
+
     // console.log(data);
     const mydData = data.filter((my) => my.artifactAdderEmail === user?.email);
     setCraft(mydData);
