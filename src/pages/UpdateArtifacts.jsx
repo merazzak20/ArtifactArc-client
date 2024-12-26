@@ -11,7 +11,7 @@ const UpdateArtifacts = () => {
   const navigate = useNavigate();
   const [craft, setCraft] = useState({});
   const [type, setType] = useState("");
-  console.log(id);
+  // console.log(id);
   useEffect(() => {
     specificArticraft();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -29,7 +29,7 @@ const UpdateArtifacts = () => {
     );
     setCraft(data);
   };
-  console.log(craft);
+  // console.log(craft);
   const {
     _id,
     artifactName,
@@ -55,12 +55,12 @@ const UpdateArtifacts = () => {
     const updatedData = Object.fromEntries(formData.entries());
 
     const { ...updatedFact } = updatedData;
-    console.log(updatedFact);
+    // console.log(updatedFact);
 
     axios
       .put(`${import.meta.env.VITE_API_URL}/artifact/${id}`, updatedFact)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         // form.reset();
         toast.success("Data updated Successfully!!!");
         navigate("/myArtifacts");

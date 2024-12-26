@@ -6,7 +6,7 @@ import axios from "axios";
 
 const MySingleFact = ({ cr }) => {
   const loaderCr = cr;
-  console.log(loaderCr);
+  // console.log(loaderCr);
   const {
     _id,
     artifactName,
@@ -27,11 +27,11 @@ const MySingleFact = ({ cr }) => {
       const { data } = await axios.delete(
         `${import.meta.env.VITE_API_URL}/artifact/${id}`
       );
-      console.log(data);
+      // console.log(data);
       toast.success("Data Deleted Successfully!!!");
       //   fetchAllJobs();
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       toast.error(err.message);
     }
   };

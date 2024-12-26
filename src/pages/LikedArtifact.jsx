@@ -18,13 +18,13 @@ const LikedArtifact = () => {
       );
       const likedData = data.filter((cr) => cr.likeEmail === user?.email);
       setCraft(likedData);
-      console.log(craft);
+      // console.log(craft);
       // console.log(data);
     } catch (error) {
-      console.error("Error fetching artifacts:", error);
+      // console.error("Error fetching artifacts:", error);
     }
   };
-  console.log(craft);
+  // console.log(craft);
 
   return (
     <div>

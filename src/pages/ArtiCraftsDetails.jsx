@@ -13,7 +13,7 @@ const ArtiCraftsDetails = () => {
   const [craft, setCraft] = useState({});
   const [likeCount, setLikeCount] = useState(0);
   const [btnStatus, setBtnStatus] = useState(false);
-  console.log(btnStatus);
+  // console.log(btnStatus);
 
   const {
     artifactName,

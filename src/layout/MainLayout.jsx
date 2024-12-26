@@ -8,7 +8,7 @@ import Footer from "../components/Footer";
 const MainLayout = () => {
   const navigation = useNavigation();
   const isLoading = navigation.state === "loading";
-  console.log(navigation.state);
+  // console.log(navigation.state);
 
   if (isLoading) {
     return (

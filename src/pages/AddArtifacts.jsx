@@ -20,7 +20,7 @@ const AddArtifacts = () => {
     };
 
     // const { ...newartiFact } = initialData;
-    console.log(newartiFact);
+    // console.log(newartiFact);
 
     axios
       .post(`${import.meta.env.VITE_API_URL}/artifact`, newartiFact)

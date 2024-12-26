@@ -49,7 +49,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log("CurrentUser-->", currentUser);
+      // console.log("CurrentUser-->", currentUser);
       if (currentUser?.email) {
         const user = { email: currentUser.email };
         axios
@@ -57,7 +57,8 @@ const AuthProvider = ({ children }) => {
             withCredentials: true,
           })
           .then((res) => {
-            console.log(res.data), setLoading(false);
+            // console.log(res.data),
+            setLoading(false);
           });
       } else {
         axios
@@ -69,7 +70,8 @@ const AuthProvider = ({ children }) => {
             }
           )
           .then((res) => {
-            console.log(res.data), setLoading(false);
+            // console.log(res.data),
+            setLoading(false);
           });
       }
     });
