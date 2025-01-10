@@ -19,10 +19,10 @@ const MainLayout = () => {
   }
   return (
     <div>
-      <div className="max-w-7xl mx-auto">
+      <div className=" sticky top-0 bg-white z-50 shadow-md transition-all duration-300">
         <Navbar></Navbar>
       </div>
-      <div className="max-w-7xl mx-auto min-h-[calc(100vh-288px)]">
+      <div className="w-11/12 mx-auto min-h-[calc(100vh-288px)]">
         <Outlet></Outlet>
       </div>
 

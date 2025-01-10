@@ -1,6 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
 .active {
   border-radius: 0px;
+}
+.swiper-pagination {
+  position: none !important;
 }

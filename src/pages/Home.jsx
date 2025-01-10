@@ -4,6 +4,8 @@ import Banner from "../components/Banner";
 import AboutSection from "../components/AboutSection";
 import FAQ from "../components/FAQ";
 import { Helmet } from "react-helmet";
+import Feedback from "../components/Feedback";
+import ContactUs from "../components/ContactUs";
 
 const Home = () => {
   return (
@@ -18,6 +20,8 @@ const Home = () => {
       <div className="my-7">
         <Articrafts></Articrafts>
       </div>
+      <Feedback></Feedback>
+      <ContactUs></ContactUs>
       <FAQ></FAQ>
     </div>
   );

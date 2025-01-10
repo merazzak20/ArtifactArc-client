@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 
 const AboutSection = () => {
   return (
-    <div>
+    <div id="about">
       <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-12 text-center">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+        <div className="container mx-auto md:px-12 text-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 text-left">
             {/* Mission Statement */}
-            <div className="max-w-3xl mx-auto  p-8  rounded-lg mb-10 text-justify">
+            <div className="max-w-3xl mx-auto  p-8  rounded-lg lg:mb-10 text-justify">
               <h3 className="text-4xl font-bold text-gray-700 mb-4">
                 About Us
               </h3>
@@ -32,12 +32,12 @@ const AboutSection = () => {
                 our shared heritage.
               </p>
 
-              <Link className="btn btn-neutral rounded-none mt-4">
+              {/* <Link className="btn btn-neutral rounded-none mt-4">
                 Read More
-              </Link>
+              </Link> */}
             </div>
 
-            {/* How Users Learn Vocabulary */}
+            {/* Mission, Vission */}
             <div className="max-w-3xl mx-auto bg-white p-8 shadow-lg rounded-lg">
               <div className="mb-5">
                 <h2 className="text-2xl font-semibold text-[#06283d]">

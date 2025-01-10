@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Sophia Carter",
+    "feedback": "ArtifactArc is a treasure trove of historical knowledge. I love how easy it is to explore and learn about artifacts from different cultures.",
+    "rating": 5,
+    "date": "2025-01-05"
+  },
+  {
+    "name": "Liam Johnson",
+    "feedback": "The ability to contribute my own findings and see them displayed is fantastic. It's a great platform for history enthusiasts!",
+    "rating": 4.5,
+    "date": "2024-12-28"
+  },
+  {
+    "name": "Emma Rodriguez",
+    "feedback": "The interface is so user-friendly, and the collection is incredibly diverse. ArtifactArc is my go-to site for historical artifacts.",
+    "rating": 5,
+    "date": "2025-01-02"
+  },
+  {
+    "name": "Noah Smith",
+    "feedback": "I appreciate the personalized artifact tracker. It helps me stay updated on my favorite items and contributions.",
+    "rating": 4,
+    "date": "2024-12-30"
+  },
+  {
+    "name": "Ava Patel",
+    "feedback": "Engaging with other users and discussing artifacts has been such a rewarding experience. A great community for history lovers!",
+    "rating": 4.8,
+    "date": "2025-01-04"
+  }
+]
