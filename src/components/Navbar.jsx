@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 // import AuthContext from "../Auth/AuthContext";
 import useAuth from "../hooks/useAuth";
+import { IoIosLogOut } from "react-icons/io";
+import { FaRegUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -25,9 +27,11 @@ const Navbar = () => {
       <li>
         <NavLink to="/allArtifacts"> All Artifact</NavLink>
       </li>
-      <li>
-        <NavLink to="/addArtifacts">Add Artifacts</NavLink>
-      </li>
+      {user && (
+        <li>
+          <NavLink to="/addArtifacts">Add Artifacts</NavLink>
+        </li>
+      )}
     </>
   );
 
@@ -50,7 +54,7 @@ const Navbar = () => {
       </li>
       <li>
         <p onClick={handleSignOut} className="">
-          Logout
+          Logout <IoIosLogOut className="text-xl" />
         </p>
       </li>
     </>
@@ -105,7 +109,10 @@ const Navbar = () => {
                       onMouseEnter={() => setIsHovered(true)}
                       onMouseLeave={() => setIsHovered(false)}
                     >
-                      <img alt="User Profile" src={user?.photoURL} />
+                      <img
+                        alt="User Profile"
+                        src={user ? user.photoURL : <FaRegUserCircle />}
+                      />
                     </div>
                   </div>
                   <ul

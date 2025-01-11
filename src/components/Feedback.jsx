@@ -50,8 +50,8 @@ const Feedback = () => {
         modules={[Pagination]}
         className="mySwiper"
       >
-        {feedback.map((feed) => (
-          <SwiperSlide key={feed.id}>
+        {feedback.map((feed, idx) => (
+          <SwiperSlide key={idx}>
             <div className="p-4 text-center ">
               <h3 className="text-xl font-bold text-gray-700 m2-4">
                 {feed.name}
